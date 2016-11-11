@@ -1,0 +1,18 @@
+{
+  "name": "screeps",
+  "version": "0.0.1",
+  "description": "enpfeffs screeps",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "screeps"
+  ],
+  "author": "enpfeff",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-screeps": "^1.0.2"
+  }
+}
