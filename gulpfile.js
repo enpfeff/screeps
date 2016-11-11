@@ -6,7 +6,7 @@ const gulp = require('gulp');
 const credentials = require('./credential.json');
 
 const config = {
-    src: ['main.js']
+    src: ['main.js', './lib/*.js']
 };
 
 function deploy() {
