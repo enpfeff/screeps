@@ -2,7 +2,6 @@
  * Created by enpfeff on 11/10/16.
  */
 const screeps = require('gulp-screeps');
-const runSequence = require('gulp-run-sequence');
 const webpack = require('gulp-webpack');
 const cleaner = require('gulp-clean');
 const gulp = require('gulp');
@@ -16,38 +15,27 @@ const VERSION_FILE = 'version.json';
 const VERSION_PATH = './dist/';
 
 const config = {
-    src: ['./dist/*.js']
+    src: ['./dist/*.js'],
+    clean: ['./dist'],
+    entry: ['./main.js'],
+    webpackConfig: './webpack.config.js',
+    output: 'dist/'
 };
 
 function build() {
-    return gulp.src(['./main.js'])
-        .pipe(webpack( require('./webpack.config.js') ))
-        .pipe(gulp.dest('dist/'));
+    return gulp.src(config.entry)
+        .pipe(webpack( require(config.webpackConfig) ))
+        .pipe(gulp.dest(config.output));
 }
 
 function clean() {
-    return gulp.src(['./dist'])
+    return gulp.src(config.clean)
         .pipe(cleaner({force: true}))
 }
 
 function deploy() {
     return gulp.src(config.src).pipe(screeps(credentials));
 }
-
-function gulpDefault(cb) {
-    return runSequence('clean', 'build', 'deploy', cb);
-}
-
-gulp.task('version', ['clean'], version);
-gulp.task('deploy', ['build'], deploy);
-gulp.task('build', ['clean', 'version'], build);
-gulp.task('clean', clean);
-gulp.task('default', ['clean', 'version', 'build'], deploy);
-
-
-//
-//  NON first class citizens
-//
 
 /**
  * bump patch version number by one and then write out version.json
@@ -78,3 +66,10 @@ function version(cb) {
         cb();
     }
 }
+
+
+gulp.task('version', ['clean'], version);
+gulp.task('deploy', ['build'], deploy);
+gulp.task('build', ['clean', 'version'], build);
+gulp.task('clean', clean);
+gulp.task('default', ['clean', 'version', 'build'], deploy);

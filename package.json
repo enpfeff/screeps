@@ -1,6 +1,6 @@
 {
   "name": "screeps",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "enpfeffs screeps",
   "main": "main.js",
   "scripts": {
@@ -14,7 +14,6 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
-    "gulp-run-sequence": "^0.3.2",
     "gulp-screeps": "^1.0.2",
     "gulp-util": "^3.0.7",
     "gulp-webpack": "^1.5.0",
