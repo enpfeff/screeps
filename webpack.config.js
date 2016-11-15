@@ -6,9 +6,16 @@
 "use strict";
 
 const webpack = require('webpack');
+const path = require('path');
 
 function webpackConfig(watch = false) {
     let config = {
+
+        resolve: {
+            alias: {
+                version: path.join(__dirname, 'dist', 'version.json')
+            }
+        },
 
         // build output
         stats: {
