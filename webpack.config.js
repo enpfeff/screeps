@@ -20,6 +20,7 @@ function webpackConfig(watch = false) {
         // build output
         stats: {
             colors: true,
+            chunks: false
         },
         output: {
             filename: 'main.js',
